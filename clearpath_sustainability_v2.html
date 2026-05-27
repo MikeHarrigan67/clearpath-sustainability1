@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clearpath Sustainability — Environmental Business Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest:   #1C3A2A;
+    --moss:     #2E5E3E;
+    --sage:     #5C8A65;
+    --mist:     #A8C5A0;
+    --cream:    #F5F0E8;
+    --parchment:#EDE6D6;
+    --bark:     #6B5A3E;
+    --gold:     #C8A95A;
+    --white:    #FAFAF7;
+    --text:     #1C2820;
+    --soft:     #5A6B5D;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(28, 58, 42, 0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(168,197,160,0.15);
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--cream); letter-spacing: 0.02em; }
+  .nav-logo span { color: var(--gold); font-style: italic; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { color: var(--mist); text-decoration: none; font-size: 13px; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-cta { background: var(--gold); color: var(--forest) !important; padding: 9px 22px; border-radius: 2px; font-weight: 500 !important; letter-spacing: 0.04em !important; transition: background 0.2s, transform 0.15s !important; }
+  .nav-cta:hover { background: #d4b86a !important; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh; background: var(--forest);
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; padding: 120px 60px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(46,94,62,0.5) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 60% at 20% 80%, rgba(92,138,101,0.2) 0%, transparent 60%);
+  }
+  .hero-texture {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-content { position: relative; z-index: 2; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; }
+  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
+  h1 { font-family: 'Playfair Display', serif; font-size: clamp(38px, 4.5vw, 62px); font-weight: 400; line-height: 1.12; color: var(--cream); margin-bottom: 24px; letter-spacing: -0.01em; }
+  h1 em { font-style: italic; color: var(--mist); }
+  .hero-body { font-size: 16px; line-height: 1.7; color: rgba(168,197,160,0.85); max-width: 480px; margin-bottom: 44px; }
+  .hero-actions { display: flex; gap: 16px; align-items: center; }
+  .btn-primary { background: var(--gold); color: var(--forest); padding: 14px 32px; border-radius: 2px; font-size: 14px; font-weight: 500; text-decoration: none; letter-spacing: 0.04em; transition: background 0.2s, transform 0.15s; display: inline-block; }
+  .btn-primary:hover { background: #d4b86a; transform: translateY(-2px); }
+  .btn-ghost { color: var(--mist); font-size: 14px; text-decoration: none; letter-spacing: 0.04em; border-bottom: 1px solid rgba(168,197,160,0.4); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
+  .btn-ghost:hover { color: var(--cream); border-color: var(--cream); }
+  .hero-visual { position: relative; z-index: 2; display: flex; justify-content: center; align-items: center; }
+  .hero-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(168,197,160,0.2); border-radius: 4px; padding: 32px 36px; backdrop-filter: blur(8px); max-width: 360px; width: 100%; }
+  .hero-card-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .stat-row { display: flex; flex-direction: column; gap: 16px; }
+  .stat-item { display: flex; flex-direction: column; gap: 2px; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 600; color: var(--cream); }
+  .stat-desc { font-size: 12px; color: var(--mist); line-height: 1.4; }
+  .stat-divider { height: 1px; background: rgba(168,197,160,0.12); }
+
+  /* ── SECTION BASE ── */
+  section { padding: 100px 60px; }
+  .section-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sage); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--sage); }
+  h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3vw, 44px); font-weight: 400; line-height: 1.2; color: var(--forest); margin-bottom: 20px; letter-spacing: -0.01em; }
+  h2 em { font-style: italic; color: var(--sage); }
+  .section-body { font-size: 16px; line-height: 1.75; color: var(--soft); max-width: 560px; }
+
+  /* ── HOW IT WORKS ── */
+  .how { background: var(--parchment); }
+  .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 60px; border: 1px solid rgba(92,138,101,0.2); border-radius: 4px; overflow: hidden; }
+  .how-step { background: var(--white); padding: 40px 32px; position: relative; transition: background 0.25s; }
+  .how-step:hover { background: var(--cream); }
+  .how-num { font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 600; color: rgba(92,138,101,0.12); line-height: 1; margin-bottom: 20px; }
+  .how-title { font-size: 16px; font-weight: 500; color: var(--forest); margin-bottom: 10px; }
+  .how-body { font-size: 13px; line-height: 1.7; color: var(--soft); }
+  .how-accent { width: 32px; height: 3px; background: var(--gold); margin-bottom: 20px; }
+
+  /* ── SERVICES ── */
+  .services { background: var(--white); }
+  .services-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; margin-top: 60px; }
+  .service-list { display: flex; flex-direction: column; }
+  .service-item { padding: 24px 0; border-bottom: 1px solid rgba(92,138,101,0.15); cursor: pointer; transition: padding-left 0.2s; }
+  .service-item:first-child { border-top: 1px solid rgba(92,138,101,0.15); }
+  .service-item:hover { padding-left: 8px; }
+  .service-name { font-size: 15px; font-weight: 500; color: var(--forest); margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+  .service-icon { font-size: 16px; }
+  .service-desc { font-size: 13px; line-height: 1.6; color: var(--soft); }
+  .service-highlight { background: var(--forest); border-radius: 4px; padding: 48px 40px; color: var(--cream); position: sticky; top: 100px; }
+  .sh-eyebrow { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .sh-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 400; line-height: 1.3; margin-bottom: 20px; color: var(--cream); }
+  .sh-body { font-size: 13px; line-height: 1.75; color: var(--mist); margin-bottom: 28px; }
+  .sh-stat { margin-bottom: 20px; }
+  .sh-stat-num { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--gold); }
+  .sh-stat-label { font-size: 12px; color: var(--mist); margin-top: 2px; }
+  .sh-divider { height: 1px; background: rgba(168,197,160,0.15); margin: 20px 0; }
+
+  /* ── GRANTS ── */
+  .grants { background: var(--forest); }
+  .grants h2 { color: var(--cream); }
+  .grants .section-body { color: var(--mist); }
+  .grants .section-label { color: var(--gold); }
+  .grants .section-label::before { background: var(--gold); }
+  .grants-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 60px; }
+  .grant-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(168,197,160,0.15); border-radius: 4px; padding: 28px 28px 24px; transition: background 0.2s, border-color 0.2s; }
+  .grant-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(168,197,160,0.3); }
+  .grant-badge { display: inline-block; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; background: rgba(200,169,90,0.15); color: var(--gold); margin-bottom: 16px; }
+  .grant-name { font-size: 14px; font-weight: 500; color: var(--cream); margin-bottom: 6px; }
+  .grant-amount { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--gold); margin-bottom: 8px; }
+  .grant-desc { font-size: 12px; line-height: 1.65; color: rgba(168,197,160,0.75); }
+
+  /* ── ABOUT ── */
+  .about { background: var(--cream); }
+  .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 60px; }
+  .about-visual { background: var(--forest); border-radius: 4px; padding: 48px 40px; position: relative; overflow: hidden; }
+  .about-visual-bg { position: absolute; inset: 0; pointer-events: none; opacity: 0.06; background: radial-gradient(ellipse at 80% 20%, #A8C5A0 0%, transparent 60%); }
+  .about-quote { font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; line-height: 1.5; color: var(--cream); position: relative; z-index: 2; margin-bottom: 28px; }
+  .about-name { font-size: 13px; color: var(--mist); letter-spacing: 0.06em; position: relative; z-index: 2; }
+  .about-role { font-size: 11px; color: var(--sage); margin-top: 2px; position: relative; z-index: 2; }
+  .about-content h2 { margin-bottom: 20px; }
+  .about-body { font-size: 15px; line-height: 1.8; color: var(--soft); margin-bottom: 16px; }
+  .value-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 28px; }
+  .value-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--soft); line-height: 1.5; }
+  .value-list li::before { content: '→'; color: var(--sage); flex-shrink: 0; margin-top: 1px; }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--parchment); }
+  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 60px; }
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-label { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--bark); font-weight: 500; }
+  .form-input { padding: 12px 16px; border: 1px solid rgba(92,138,101,0.25); border-radius: 2px; background: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); outline: none; transition: border-color 0.2s; }
+  .form-input:focus { border-color: var(--sage); box-shadow: 0 0 0 3px rgba(92,138,101,0.1); }
+  textarea.form-input { resize: vertical; min-height: 120px; }
+  .form-submit { background: var(--forest); color: var(--cream); border: none; padding: 14px 32px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 0.04em; cursor: pointer; border-radius: 2px; transition: background 0.2s, transform 0.15s; align-self: flex-start; }
+  .form-submit:hover:not(:disabled) { background: var(--moss); transform: translateY(-1px); }
+  .form-submit:disabled { opacity: 0.7; cursor: not-allowed; }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(28,58,42,0.7); backdrop-filter: blur(4px);
+    align-items: center; justify-content: center; padding: 24px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--white); border-radius: 6px;
+    max-width: 480px; width: 100%; padding: 48px 44px;
+    position: relative; box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+    animation: modalIn 0.25s ease;
+  }
+  @keyframes modalIn { from { opacity:0; transform: translateY(16px) scale(0.98); } to { opacity:1; transform: none; } }
+  .modal-close {
+    position: absolute; top: 16px; right: 18px;
+    background: none; border: none; font-size: 20px;
+    cursor: pointer; color: var(--soft); line-height: 1;
+    padding: 4px 8px; border-radius: 4px; transition: background 0.15s;
+  }
+  .modal-close:hover { background: var(--parchment); }
+  .modal-icon { font-size: 36px; margin-bottom: 16px; }
+  .modal-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 400; color: var(--forest); margin-bottom: 10px; line-height: 1.2; }
+  .modal-title em { font-style: italic; color: var(--sage); }
+  .modal-sub { font-size: 14px; color: var(--soft); line-height: 1.65; margin-bottom: 28px; }
+  .modal-form { display: flex; flex-direction: column; gap: 14px; }
+  .modal-form .form-label { font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--bark); font-weight: 500; margin-bottom: 4px; display: block; }
+  .modal-form .form-input { width: 100%; padding: 11px 14px; border: 1px solid rgba(92,138,101,0.3); border-radius: 3px; background: #fff; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); outline: none; transition: border-color 0.2s; box-sizing: border-box; }
+  .modal-form .form-input:focus { border-color: var(--sage); box-shadow: 0 0 0 3px rgba(92,138,101,0.1); }
+  .modal-form select.form-input { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235C8A65' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+  .modal-form textarea.form-input { resize: vertical; min-height: 90px; }
+  .modal-submit { width: 100%; background: var(--forest); color: var(--cream); border: none; padding: 14px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 0.04em; cursor: pointer; border-radius: 3px; transition: background 0.2s; margin-top: 4px; }
+  .modal-submit:hover:not(:disabled) { background: var(--moss); }
+  .modal-submit:disabled { opacity: 0.65; cursor: not-allowed; }
+  .modal-note { font-size: 11px; color: #aaa; text-align: center; margin-top: 8px; }
+
+  /* success state */
+  .modal-success { display: none; text-align: center; padding: 16px 0; }
+  .modal-success.show { display: block; }
+  .modal-form-wrap.hide { display: none; }
+  .success-icon { font-size: 48px; margin-bottom: 16px; }
+  .success-title { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--forest); margin-bottom: 10px; }
+  .success-body { font-size: 14px; color: var(--soft); line-height: 1.65; }
+
+  /* ── CONTACT INFO SIDE ── */
+  .contact-info h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 400; color: var(--forest); margin-bottom: 16px; }
+  .contact-info p { font-size: 14px; line-height: 1.75; color: var(--soft); margin-bottom: 32px; }
+  .contact-detail { display: flex; flex-direction: column; gap: 14px; }
+  .contact-item { display: flex; align-items: flex-start; gap: 12px; }
+  .c-icon { font-size: 16px; margin-top: 1px; }
+  .c-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sage); margin-bottom: 2px; }
+  .c-val { font-size: 14px; color: var(--forest); font-weight: 500; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--forest); padding: 40px 60px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(168,197,160,0.1); }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--cream); }
+  .footer-logo span { font-style: italic; color: var(--gold); }
+  .footer-copy { font-size: 12px; color: rgba(168,197,160,0.5); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-content > * { opacity: 0; animation: fadeUp 0.8s ease forwards; }
+  .hero-eyebrow  { animation-delay: 0.1s; }
+  .hero-content h1 { animation-delay: 0.25s; }
+  .hero-body     { animation-delay: 0.4s; }
+  .hero-actions  { animation-delay: 0.55s; }
+  .hero-visual   { opacity: 0; animation: fadeUp 0.9s 0.5s ease forwards; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 18px 24px; }
+    .nav-links { display: none; }
+    section { padding: 72px 24px; }
+    .hero { grid-template-columns: 1fr; padding: 110px 24px 60px; gap: 48px; }
+    .how-grid { grid-template-columns: 1fr; }
+    .services-layout, .about-layout, .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px 24px; }
+    .modal { padding: 36px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── ASSESSMENT MODAL ── -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+
+    <!-- Form state -->
+    <div class="modal-form-wrap" id="modalFormWrap">
+      <div class="modal-icon">🌿</div>
+      <h2 class="modal-title" id="modalTitle">Request your <em>free assessment</em></h2>
+      <p class="modal-sub">Fill this out and we'll reach out within 48 hours to schedule a free visit — no pressure, no obligation.</p>
+
+      <!--
+        HOW THIS WORKS:
+        Formspree.io is a free service that forwards form submissions to your email.
+        Steps to activate:
+          1. Go to https://formspree.io and sign up (free)
+          2. Create a new form — enter mharrigan3366@gmail.com as the email
+          3. Copy the form ID (looks like: xpzgkrqd)
+          4. Replace YOUR_FORM_ID below with that ID
+        Once done, every submission emails mharrigan3366@gmail.com automatically.
+      -->
+      <form
+        class="modal-form"
+        id="assessmentForm"
+        action="https://formspree.io/f/YOUR_FORM_ID"
+        method="POST"
+      >
+        <!-- Hidden fields for Formspree -->
+        <input type="hidden" name="_subject" value="New Free Assessment Request — Clearpath Sustainability">
+        <input type="hidden" name="_replyto" id="hidden_email">
+
+        <div>
+          <label class="form-label" for="m_name">Your name *</label>
+          <input class="form-input" type="text" id="m_name" name="name" placeholder="Jane Smith" required>
+        </div>
+        <div>
+          <label class="form-label" for="m_biz">Business name *</label>
+          <input class="form-input" type="text" id="m_biz" name="business_name" placeholder="Smith's Restaurant" required>
+        </div>
+        <div>
+          <label class="form-label" for="m_email">Email address *</label>
+          <input class="form-input" type="email" id="m_email" name="email" placeholder="jane@yourbusiness.com" required oninput="document.getElementById('hidden_email').value=this.value">
+        </div>
+        <div>
+          <label class="form-label" for="m_phone">Phone number</label>
+          <input class="form-input" type="tel" id="m_phone" name="phone" placeholder="(215) 555-0100">
+        </div>
+        <div>
+          <label class="form-label" for="m_biztype">Type of business</label>
+          <select class="form-input" id="m_biztype" name="business_type">
+            <option value="">Select one…</option>
+            <option>Restaurant / food service</option>
+            <option>Retail shop</option>
+            <option>Manufacturing / industrial</option>
+            <option>Medical / dental office</option>
+            <option>Fleet / trucking business</option>
+            <option>Agricultural / fuel production</option>
+            <option>Commercial building owner</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label" for="m_msg">Anything you'd like us to know?</label>
+          <textarea class="form-input" id="m_msg" name="message" placeholder="Size of your space, what you're hoping to improve, current energy bills..."></textarea>
+        </div>
+        <button type="submit" class="modal-submit" id="modalSubmitBtn">Send Request →</button>
+        <p class="modal-note">We'll never share your info. Replies go to mharrigan3366@gmail.com.</p>
+      </form>
+    </div>
+
+    <!-- Success state -->
+    <div class="modal-success" id="modalSuccess">
+      <div class="success-icon">✅</div>
+      <div class="success-title">Request received!</div>
+      <p class="success-body">Thanks for reaching out. We'll be in touch within 48 hours to schedule your free assessment. Check your inbox for a confirmation.</p>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav aria-label="Main navigation">
+  <div class="nav-logo">Clearpath<span>Sustainability</span></div>
+  <ul class="nav-links">
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#grants">Grants</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#" onclick="openModal();return false;" class="nav-cta">Free Assessment</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" aria-label="Hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-texture" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Pennsylvania Environmental Consulting</div>
+    <h1>Go green.<br>Save money.<br><em>We'll show you how.</em></h1>
+    <p class="hero-body">Clearpath Sustainability helps small businesses across Pennsylvania reduce energy costs, qualify for state grants, and build a more sustainable operation — without the complexity.</p>
+    <div class="hero-actions">
+      <a href="#" onclick="openModal();return false;" class="btn-primary">Get a Free Assessment</a>
+      <a href="#how" class="btn-ghost">See how it works</a>
+    </div>
+  </div>
+  <div class="hero-visual" aria-hidden="true">
+    <div class="hero-card">
+      <div class="hero-card-label">Real results for PA businesses</div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-num">$12,000</div>
+          <div class="stat-desc">Maximum PA state grant per qualifying project through the Small Business Advantage Grant</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">50–80%</div>
+          <div class="stat-desc">Of project costs reimbursed by the state — you keep the rest in monthly savings</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">$0</div>
+          <div class="stat-desc">Cost for your initial assessment — we identify your opportunities before you spend anything</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how" aria-labelledby="how-title">
+  <div class="section-label">Process</div>
+  <h2 id="how-title">Simple steps to <em>real savings</em></h2>
+  <p class="section-body">Most business owners don't know what they qualify for. We walk you through the entire process — from identification to application to reimbursement.</p>
+  <div class="how-grid" role="list">
+    <div class="how-step" role="listitem">
+      <div class="how-num" aria-hidden="true">01</div>
+      <div class="how-accent" aria-hidden="true"></div>
+      <div class="how-title">Free assessment</div>
+      <div class="how-body">We visit your business, review your energy setup, equipment, and operations. No cost, no commitment. Just a clear picture of where your opportunities are.</div>
+    </div>
+    <div class="how-step" role="listitem">
+      <div class="how-num" aria-hidden="true">02</div>
+      <div class="how-accent" aria-hidden="true"></div>
+      <div class="how-title">Custom report</div>
+      <div class="how-body">You receive a detailed report showing which upgrades qualify, estimated costs, projected savings, and exactly which PA and federal programs apply to your business.</div>
+    </div>
+    <div class="how-step" role="listitem">
+      <div class="how-num" aria-hidden="true">03</div>
+      <div class="how-accent" aria-hidden="true"></div>
+      <div class="how-title">Application support</div>
+      <div class="how-body">We guide you through the grant application process start to finish — gathering documentation, completing forms, and following up until you have your answer.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services" aria-labelledby="services-title">
+  <div class="section-label">What we do</div>
+  <h2 id="services-title">Services built for <em>small business</em></h2>
+  <div class="services-layout">
+    <div class="service-list" role="list">
+      <div class="service-item" role="listitem">
+        <div class="service-name"><span class="service-icon" aria-hidden="true">⚡</span> Energy Audits</div>
+        <div class="service-desc">We analyze your energy consumption, identify waste, and calculate the exact ROI on recommended upgrades — with real numbers, not guesses.</div>
+      </div>
+      <div class="service-item" role="listitem">
+        <div class="service-name"><span class="service-icon" aria-hidden="true">💰</span> Grant Navigation</div>
+        <div class="service-desc">We identify every state and federal program your business qualifies for and manage the application process so you don't have to.</div>
+      </div>
+      <div class="service-item" role="listitem">
+        <div class="service-name"><span class="service-icon" aria-hidden="true">📋</span> Sustainability Roadmaps</div>
+        <div class="service-desc">A written plan showing your path to lower costs and a greener operation — phased by ROI so you always tackle the highest-return improvements first.</div>
+      </div>
+      <div class="service-item" role="listitem">
+        <div class="service-name"><span class="service-icon" aria-hidden="true">🏆</span> Certification Prep</div>
+        <div class="service-desc">We help you prepare for LEED, B Corp, and EPA certifications that strengthen your brand and open doors to additional funding sources.</div>
+      </div>
+      <div class="service-item" role="listitem">
+        <div class="service-name"><span class="service-icon" aria-hidden="true">🧾</span> Tax Incentive Mapping</div>
+        <div class="service-desc">Federal tax credits under the Inflation Reduction Act are still available for many businesses. We identify which ones apply to your situation.</div>
+      </div>
+    </div>
+    <div class="service-highlight" aria-label="Why businesses work with us">
+      <div class="sh-eyebrow">Why it works</div>
+      <div class="sh-title">We lead with the numbers, not the mission.</div>
+      <div class="sh-body">Most businesses don't act on sustainability because the upfront cost feels too high. We flip that conversation — showing owners exactly what they'll get back, what it costs after grants, and how long until it pays for itself. The environment wins because the economics make sense.</div>
+      <div class="sh-stat">
+        <div class="sh-stat-num">2,500+</div>
+        <div class="sh-stat-label">PA businesses funded through state programs since 2004</div>
+      </div>
+      <div class="sh-divider" aria-hidden="true"></div>
+      <div class="sh-stat">
+        <div class="sh-stat-num">$5M+</div>
+        <div class="sh-stat-label">Available annually through PA Alternative Fuels Incentive Grant alone</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GRANTS -->
+<section class="grants" id="grants" aria-labelledby="grants-title">
+  <div class="section-label">Funding landscape</div>
+  <h2 id="grants-title">Grants your business<br><em>may already qualify for</em></h2>
+  <p class="section-body">Pennsylvania and the federal government fund billions in sustainability upgrades each year. Most small business owners never apply because they don't know these programs exist.</p>
+  <div class="grants-grid" role="list">
+    <div class="grant-card" role="listitem">
+      <div class="grant-badge">PA DEP — State Grant</div>
+      <div class="grant-name">Small Business Advantage Grant</div>
+      <div class="grant-amount">$12,000</div>
+      <div class="grant-desc">Reimburses 50–80% of project costs for energy efficiency or pollution reduction. Lighting, HVAC, refrigeration, and more qualify.</div>
+    </div>
+    <div class="grant-card" role="listitem">
+      <div class="grant-badge">PA DEP — State Grant</div>
+      <div class="grant-name">Alternative Fuels Incentive Grant</div>
+      <div class="grant-amount">$500,000</div>
+      <div class="grant-desc">For businesses transitioning to alternative fuel vehicles or adding EV charging infrastructure. ~$5M available annually.</div>
+    </div>
+    <div class="grant-card" role="listitem">
+      <div class="grant-badge">PA DEP — Low-Interest Loan</div>
+      <div class="grant-name">Pollution Prevention Assistance Loan</div>
+      <div class="grant-amount">$100,000</div>
+      <div class="grant-desc">2% fixed rate, up to 10-year term. Covers 75% of project costs. Stack with the SBAG grant to maximize coverage.</div>
+    </div>
+    <div class="grant-card" role="listitem">
+      <div class="grant-badge">Federal — Tax Credit</div>
+      <div class="grant-name">Clean Electricity Credit (Sec. 45Y)</div>
+      <div class="grant-amount">~30%</div>
+      <div class="grant-desc">Federal tax credit for solar, wind, and geothermal energy systems. Solar projects remain eligible through 2027.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about" aria-labelledby="about-title">
+  <div class="about-layout">
+    <div class="about-visual" aria-hidden="true">
+      <div class="about-visual-bg"></div>
+      <div class="about-quote">"The best sustainability pitch isn't about saving the planet. It's about saving money — and the planet comes along for the ride."</div>
+      <div class="about-name">Clearpath Sustainability</div>
+      <div class="about-role">Bucks County, Pennsylvania</div>
+    </div>
+    <div class="about-content">
+      <div class="section-label">About</div>
+      <h2 id="about-title">Built on economics,<br><em>driven by values</em></h2>
+      <p class="about-body">Clearpath Sustainability was founded on a simple idea: that going green and saving money aren't in conflict. In fact, for most small businesses, the smartest financial move they can make right now is also one of the most sustainable.</p>
+      <p class="about-body">We combine a deep understanding of Pennsylvania's grant landscape with straightforward economic analysis to give business owners a clear, honest picture of what's possible — and what it's worth.</p>
+      <ul class="value-list" aria-label="Our values">
+        <li>We're upfront about estimates vs. guarantees — always</li>
+        <li>We don't profit from steering you toward a specific vendor</li>
+        <li>We connect every client to free state resources they'd never find alone</li>
+        <li>We present the numbers honestly, even when they don't favor an upgrade</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact" aria-labelledby="contact-title">
+  <div class="section-label">Get started</div>
+  <h2 id="contact-title">Ready to find out what<br><em>you qualify for?</em></h2>
+  <div class="contact-layout">
+    <div>
+      <p style="font-size:15px;line-height:1.75;color:var(--soft);margin-bottom:28px;">Click below to request your free assessment. We'll ask a few quick questions and get back to you within 48 hours to schedule a visit.</p>
+      <button onclick="openModal()" class="btn-primary" style="font-size:15px;padding:16px 36px;">Request Free Assessment →</button>
+    </div>
+    <div class="contact-info">
+      <h3>What happens next</h3>
+      <p>After you submit, we'll reach out within 48 hours to schedule a free 15-minute visit to your business. No pressure, no sales pitch — just an honest look at what's possible.</p>
+      <div class="contact-detail">
+        <div class="contact-item">
+          <div class="c-icon" aria-hidden="true">📍</div>
+          <div>
+            <div class="c-label">Service area</div>
+            <div class="c-val">Bucks County & surrounding PA</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon" aria-hidden="true">⏱</div>
+          <div>
+            <div class="c-label">Assessment time</div>
+            <div class="c-val">15–30 minutes, at your location</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon" aria-hidden="true">💵</div>
+          <div>
+            <div class="c-label">Cost</div>
+            <div class="c-val">Completely free, no obligation</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon" aria-hidden="true">✉️</div>
+          <div>
+            <div class="c-label">Replies go to</div>
+            <div class="c-val">mharrigan3366@gmail.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Clearpath<span>Sustainability</span></div>
+  <div class="footer-copy">© 2026 Clearpath Sustainability · Bucks County, PA · Environmental business consulting</div>
+</footer>
+
+<script>
+// ── MODAL ──
+function openModal() {
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(function(){ document.getElementById('m_name').focus(); }, 100);
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Close on overlay click
+document.getElementById('modalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+
+// ── FORM SUBMISSION ──
+document.getElementById('assessmentForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  var btn = document.getElementById('modalSubmitBtn');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  var form = this;
+  var data = new FormData(form);
+
+  fetch(form.action, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(function(res) {
+    if (res.ok) {
+      // Show success
+      document.getElementById('modalFormWrap').classList.add('hide');
+      document.getElementById('modalSuccess').classList.add('show');
+    } else {
+      btn.textContent = 'Try again →';
+      btn.disabled = false;
+      alert('Something went wrong. Please email mharrigan3366@gmail.com directly.');
+    }
+  })
+  .catch(function() {
+    btn.textContent = 'Try again →';
+    btn.disabled = false;
+    alert('Network error. Please email mharrigan3366@gmail.com directly.');
+  });
+});
+</script>
+
+</body>
+</html>
